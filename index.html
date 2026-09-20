@@ -208,8 +208,10 @@
 
   /* origin */
   .origin{background:var(--ground-2)}
-  .origin-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:start;margin-top:8px}
+  .origin-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:44px;align-items:center;margin-top:8px}
   .origin-grid .body p+p{margin-top:16px}
+  .origin-media{display:flex;justify-content:center}
+  .origin-media img{width:min(280px,78%);height:auto;filter:drop-shadow(0 30px 44px rgba(var(--shadow),.32))}
   .namecard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:0 18px 40px -28px rgba(var(--shadow),.5)}
   .namecard .lbl{font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
   .etym{display:flex;flex-direction:column;gap:12px;margin:16px 0 4px}
@@ -392,16 +394,8 @@
           <b>¿Con qué está hecho?</b> Detrás del chat trabajan tres piezas: una <b>IA conversacional</b> que entiende y responde con calidez, una <b>base de datos</b> con la información real de citas y análisis, y <b>n8n</b>, la plataforma que conecta todo y automatiza cada paso sin construirlo desde cero.
         </div>
       </div>
-      <aside class="namecard">
-        <span class="lbl">Qué significa AYKAI</span>
-        <div class="etym">
-          <div class="row"><span class="word">Ayni</span><span class="mean">del quechua: ayudar en reciprocidad</span></div>
-          <div class="row"><span class="plus">+</span></div>
-          <div class="row"><span class="word">kai</span><span class="mean">del japonés: cambiar</span></div>
-          <div class="row"><span class="plus">+</span></div>
-          <div class="row"><span class="word">AI</span><span class="mean">inteligencia artificial</span></div>
-        </div>
-        <div class="concl">“Cambiar para ayudar.” Innovar para tu cuidado.</div>
+      <aside class="origin-media">
+        <img src="images/significado.png" alt="Qué significa AYKAI: Ayni (quechua: ayudar en reciprocidad) + kai (japonés: cambiar) + AI (inteligencia artificial) = cambiar para ayudar" width="600" height="1074">
       </aside>
     </div>
   </div>
