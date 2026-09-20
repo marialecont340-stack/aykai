@@ -270,11 +270,17 @@
 
   /* team */
   .team-copy{max-width:36em}
-  .team{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
-  .member{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:15px 18px;flex:1 1 210px;min-width:200px}
-  .member .who{font-weight:800;font-size:15.5px}
-  .member .role{font-size:13px;color:var(--ink-soft);margin-top:2px}
-  .member.all{background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-family:"Fraunces",serif;font-style:italic;font-size:16px;color:var(--sage-deep);text-align:center}
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
+  .tmember{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+  .tmember:hover{transform:translateY(-3px);border-color:var(--sage);box-shadow:0 18px 34px -24px rgba(var(--shadow),.5)}
+  .avatar{flex:0 0 auto;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:600;font-size:19px;color:#fff;overflow:hidden;box-shadow:inset 0 0 0 3px color-mix(in srgb,var(--surface) 55%,transparent)}
+  .avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+  .tmember .info{flex:1 1 auto;min-width:0;display:flex;flex-direction:column}
+  .tmember .nm{font-weight:800;font-size:15px;color:var(--ink);line-height:1.25}
+  .tmember .rl{font-size:12.5px;color:var(--sage-deep);margin-top:3px;line-height:1.3}
+  .tmember .arrow{flex:0 0 auto;color:var(--sage-deep);transition:transform .18s ease;opacity:.75}
+  .tmember:hover .arrow{transform:translateX(4px);opacity:1}
+  .team-note{margin-top:20px;text-align:center;font-family:"Fraunces",serif;font-style:italic;font-size:17px;color:var(--sage-deep)}
 
   /* final cta */
   .final{background:linear-gradient(155deg,var(--btn-bg),#2f5a4e);color:#eafaf4;border-radius:28px;padding:clamp(40px,7vw,64px) clamp(28px,5vw,56px);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:clamp(20px,4vw,48px);flex-wrap:wrap;text-align:left}
@@ -299,7 +305,7 @@
 
   @media (max-width:900px){
     .hero-grid,.origin-grid,.aud-grid,.why-grid,.como-layout,.why-layout{grid-template-columns:1fr}
-    .cards{grid-template-columns:1fr 1fr}
+    .cards,.team-grid{grid-template-columns:1fr 1fr}
     .stage{min-height:340px;margin-top:8px}
     .origin-grid{gap:30px}
     .como-phone{order:-1}
@@ -308,7 +314,7 @@
   @media (max-width:640px){
     body{font-size:16px}
     .nav-links{display:none}
-    .cards{grid-template-columns:1fr}
+    .cards,.team-grid{grid-template-columns:1fr}
     .hello-bubble{top:2%;right:0}
     .final{text-align:center}
     .final-content{max-width:100%}
@@ -560,15 +566,39 @@
       <h2>Personas que creen en acercar el cuidado</h2>
       <p>Somos un grupo que cree que la tecnología debe acercar la salud, no complicarla. Cada quien aporta lo suyo para que AYKAI funcione de principio a fin.</p>
     </div>
-    <div class="team">
-      <div class="member"><div class="who">María Alejandra Jiménez</div><div class="role">Desarrollo del asistente y base de datos</div></div>
-      <div class="member"><div class="who">Franco Arévalo</div><div class="role">Diseño e identidad visual</div></div>
-      <div class="member"><div class="who">Brunella Gaona</div><div class="role">Pitch y propuesta</div></div>
-      <div class="member"><div class="who">Paredes</div><div class="role">Estudio de mercado y competencia</div></div>
-      <div class="member"><div class="who">María Coronado</div><div class="role">Costos y estrategia de venta</div></div>
-      <div class="member"><div class="who">Mía Lucas</div><div class="role">Coordinación del grupo y el stand</div></div>
-      <div class="member all">Y el robotito de AYKAI,<br>armado entre todos 💚</div>
+    <div class="team-grid">
+      <div class="tmember">
+        <span class="avatar" style="background:linear-gradient(145deg,#83AA9F,#4d8173)">MJ</span>
+        <span class="info"><span class="nm">María Alejandra Jiménez</span><span class="rl">Desarrollo del asistente y base de datos</span></span>
+        <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+      <div class="tmember">
+        <span class="avatar" style="background:linear-gradient(145deg,#8AB1B1,#5a8f8f)">FA</span>
+        <span class="info"><span class="nm">Franco Arévalo</span><span class="rl">Diseño e identidad visual</span></span>
+        <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+      <div class="tmember">
+        <span class="avatar" style="background:linear-gradient(145deg,#80A38E,#3f6b5e)">BG</span>
+        <span class="info"><span class="nm">Brunella Gaona</span><span class="rl">Pitch y propuesta</span></span>
+        <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+      <div class="tmember">
+        <span class="avatar" style="background:linear-gradient(145deg,#dfa14b,#c07f2e)">PA</span>
+        <span class="info"><span class="nm">Paredes</span><span class="rl">Estudio de mercado y competencia</span></span>
+        <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+      <div class="tmember">
+        <span class="avatar" style="background:linear-gradient(145deg,#6fae9d,#417a6b)">MC</span>
+        <span class="info"><span class="nm">María Coronado</span><span class="rl">Costos y estrategia de venta</span></span>
+        <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+      <div class="tmember">
+        <span class="avatar" style="background:linear-gradient(145deg,#9ac0b6,#5f8f81)">ML</span>
+        <span class="info"><span class="nm">Mía Lucas</span><span class="rl">Coordinación del grupo y el stand</span></span>
+        <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
     </div>
+    <p class="team-note">Y el robotito de AYKAI, armado entre todos <span aria-hidden="true">💚</span></p>
   </div>
 </section>
 
