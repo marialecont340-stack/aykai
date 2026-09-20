@@ -1,19 +1,11 @@
 <!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AYKAI — Asistente de salud con IA por WhatsApp</title>
-<meta name="description" content="AYKAI es el asistente de salud con IA que atiende a tus pacientes por WhatsApp: agenda y consulta citas, revisa el estado de sus análisis y responde al instante. Sin llamadas y sin colas.">
-<meta name="author" content="AYKAI">
-<meta name="theme-color" content="#4d8173">
+<meta name="description" content="AYKAI es el asistente de salud con IA que atiende a tus pacientes por WhatsApp: agenda y consulta citas, revisa el estado de sus análisis y responde al instante. Sin llamadas y sin colas."><meta name="theme-color" content="#4d8173">
 <link rel="icon" type="image/png" href="images/logo.png">
-<link rel="apple-touch-icon" href="images/logo.png">
-<meta property="og:type" content="website">
-<meta property="og:title" content="AYKAI — Transformamos tu atención, cuidamos tu bienestar">
-<meta property="og:description" content="AYKAI es el asistente de salud con IA que atiende a tus pacientes por WhatsApp: agenda y consulta citas, revisa el estado de sus análisis y responde al instante. Sin llamadas y sin colas.">
-<meta property="og:image" content="images/logo.png">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="website"><meta property="og:title" content="AYKAI — Transformamos tu atención, cuidamos tu bienestar">
+<meta property="og:description" content="AYKAI es el asistente de salud con IA que atiende a tus pacientes por WhatsApp: agenda y consulta citas, revisa el estado de sus análisis y responde al instante. Sin llamadas y sin colas."><meta property="og:image" content="images/logo.png">
 <style>
   *{box-sizing:border-box}
   html,body{margin:0}
@@ -45,6 +37,9 @@
     --shadow:34,63,57;
     --blob-a:#cfe0d9;
     --blob-b:#d7e5e5;
+    --sink-bg:#e2e9e2;
+    --sink-dark:rgba(41,64,57,.24);
+    --sink-light:rgba(255,255,255,.95);
     --radius:20px;
     --maxw:1120px;
   }
@@ -72,6 +67,9 @@
       --shadow:0,0,0;
       --blob-a:#1c2f2a;
       --blob-b:#1e3231;
+      --sink-bg:#101d19;
+      --sink-dark:rgba(0,0,0,.55);
+      --sink-light:rgba(255,255,255,.045);
     }
   }
   :root[data-theme="dark"]{
@@ -97,6 +95,9 @@
     --shadow:0,0,0;
     --blob-a:#1c2f2a;
     --blob-b:#1e3231;
+    --sink-bg:#101d19;
+    --sink-dark:rgba(0,0,0,.55);
+    --sink-light:rgba(255,255,255,.045);
   }
 
   *{box-sizing:border-box}
@@ -140,9 +141,9 @@
     border-bottom:1px solid transparent;transition:border-color .3s;
   }
   header.scrolled{border-bottom-color:var(--line)}
-  .nav{display:flex;align-items:center;gap:20px;height:66px}
+  .nav{display:flex;align-items:center;gap:20px;height:74px}
   .brand{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto}
-  .brand img{height:38px;width:auto}
+  .brand img{height:50px;width:auto}
   /* en modo oscuro, un fondo claro sutil para que el logo se lea */
   @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .brand img{background:#f4f7f4;border-radius:9px;padding:4px 7px}}
   :root[data-theme="dark"] .brand img{background:#f4f7f4;border-radius:9px;padding:4px 7px}
@@ -225,8 +226,9 @@
 
   /* features */
   .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
-  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;transition:transform .18s ease, box-shadow .18s ease}
-  .card:hover{transform:translateY(-4px);box-shadow:0 22px 44px -28px rgba(var(--shadow),.55)}
+  .card{background:var(--sink-bg);border:1px solid transparent;border-radius:var(--radius);padding:24px;transition:box-shadow .2s ease, background .2s ease;
+    box-shadow:inset 5px 5px 11px var(--sink-dark), inset -4px -4px 10px var(--sink-light)}
+  .card:hover{box-shadow:inset 7px 7px 15px var(--sink-dark), inset -5px -5px 12px var(--sink-light)}
   .card .ic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:var(--surface-2);color:var(--sage-deep);margin-bottom:15px}
   .card h3{font-size:19.5px;margin-bottom:7px}
   .card p{font-size:15px;color:var(--ink-soft)}
@@ -237,7 +239,7 @@
   .como-phone{display:flex;justify-content:center}
   .como-phone img{width:min(300px,80%);height:auto;filter:drop-shadow(0 30px 44px rgba(var(--shadow),.32))}
   .steps-list{display:flex;flex-direction:column;gap:14px;margin-top:30px}
-  .step{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;display:flex;gap:16px;align-items:flex-start}
+  .step{background:var(--sink-bg);border:1px solid transparent;border-radius:var(--radius);padding:22px 24px;display:flex;gap:16px;align-items:flex-start;box-shadow:inset 5px 5px 11px var(--sink-dark), inset -4px -4px 10px var(--sink-light)}
   .step .n{flex:0 0 auto;font-family:"Fraunces",serif;font-size:15px;font-weight:600;color:#fff;background:var(--btn-bg);width:36px;height:36px;border-radius:50%;display:grid;place-items:center}
   :root[data-theme="dark"] .step .n,:root:not([data-theme="light"]) .step .n{color:var(--btn-ink)}
   .step h3{font-size:19px;margin-bottom:5px}
@@ -245,7 +247,7 @@
 
   /* audience */
   .aud-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px}
-  .aud{border-radius:var(--radius);padding:30px;border:1px solid var(--line)}
+  .aud{border-radius:var(--radius);padding:30px;border:1px solid transparent;box-shadow:inset 5px 5px 11px var(--sink-dark), inset -4px -4px 10px var(--sink-light)}
   .aud.pays{background:linear-gradient(160deg,var(--surface),var(--surface-2))}
   .aud.benef{background:linear-gradient(160deg,color-mix(in srgb,var(--aqua) 20%,var(--surface)),var(--surface))}
   .aud .tag{font-weight:800;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--sage-deep);display:flex;align-items:center;gap:9px}
@@ -271,8 +273,8 @@
   /* team */
   .team-copy{max-width:36em}
   .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
-  .tmember{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
-  .tmember:hover{transform:translateY(-3px);border-color:var(--sage);box-shadow:0 18px 34px -24px rgba(var(--shadow),.5)}
+  .tmember{display:flex;align-items:center;gap:14px;background:var(--sink-bg);border:1px solid transparent;border-radius:16px;padding:14px 16px;transition:box-shadow .16s ease;box-shadow:inset 4px 4px 9px var(--sink-dark), inset -3px -3px 8px var(--sink-light)}
+  .tmember:hover{box-shadow:inset 6px 6px 12px var(--sink-dark), inset -4px -4px 10px var(--sink-light)}
   .avatar{flex:0 0 auto;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:600;font-size:19px;color:#fff;overflow:hidden;box-shadow:inset 0 0 0 3px color-mix(in srgb,var(--surface) 55%,transparent)}
   .avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
   .tmember .info{flex:1 1 auto;min-width:0;display:flex;flex-direction:column}
@@ -296,7 +298,7 @@
   /* footer */
   footer{padding-block:44px 40px}
   .foot{display:flex;flex-wrap:wrap;align-items:center;gap:18px;justify-content:space-between;border-top:1px solid var(--line);padding-top:30px}
-  .foot .brand img{height:34px}
+  .foot .brand img{height:46px}
   .foot .slg{font-family:"Fraunces",serif;font-style:italic;color:var(--ink-soft);font-size:15px}
   .foot .meta{font-size:13.5px;color:var(--ink-soft)}
 
@@ -340,7 +342,7 @@
   .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;text-align:center}
   .stat{display:flex;flex-direction:column;gap:6px;padding:8px 6px;position:relative}
   .stat+.stat::before{content:"";position:absolute;left:-11px;top:16%;height:68%;width:1px;background:var(--line)}
-  .stat .num{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(34px,5vw,52px);line-height:1;color:var(--sage-deep);font-variant-numeric:tabular-nums}
+  .stat .num{font-family:"Archivo Black","Arial Black",system-ui,sans-serif;font-weight:400;font-size:clamp(32px,4.7vw,50px);line-height:1;letter-spacing:-.01em;color:var(--sage-deep);font-variant-numeric:tabular-nums}
   .stat .lbl{font-size:13.5px;font-weight:700;color:var(--ink-soft);letter-spacing:.02em}
 
   /* ============ frase de impacto ============ */
@@ -361,10 +363,10 @@
   .btn-primary{position:relative;overflow:hidden}
   .btn-primary::before{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-18deg);transition:left .6s ease}
   .btn-primary:hover::before{left:130%}
-  .step{transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
-  .step:hover{transform:translateX(4px);border-color:var(--sage)}
-  .aud{transition:transform .18s ease,box-shadow .18s ease}
-  .aud:hover{transform:translateY(-4px);box-shadow:0 24px 44px -28px rgba(var(--shadow),.5)}
+  .step{transition:box-shadow .18s ease}
+  .step:hover{box-shadow:inset 7px 7px 15px var(--sink-dark), inset -5px -5px 12px var(--sink-light)}
+  .aud{transition:box-shadow .18s ease}
+  .aud:hover{box-shadow:inset 7px 7px 16px var(--sink-dark), inset -5px -5px 12px var(--sink-light)}
 
   /* textura suave en secciones para que no se vea plana */
   .band{position:relative}
@@ -377,13 +379,6 @@
     .stat+.stat::before{display:none}
   }
 
-  /* ============ tipografía de impacto: Archivo Black ============ */
-  .sec-head h2,.final h2,.statement,.stat .num{font-family:"Archivo Black","Arial Black",system-ui,sans-serif;font-weight:400}
-  .sec-head h2{font-size:clamp(25px,3.3vw,37px);letter-spacing:-.015em;line-height:1.08}
-  .final h2{font-size:clamp(26px,3.6vw,40px);letter-spacing:-.015em;line-height:1.08}
-  .statement{text-transform:uppercase;letter-spacing:-.01em;font-size:clamp(30px,5.6vw,60px);line-height:1.0}
-  .statement em{font-style:normal}
-  .stat .num{letter-spacing:-.01em}
 </style>
 
 <header id="hdr">
@@ -795,5 +790,4 @@
   })();
 </script>
 
-</body>
-</html>
+</body></html>
