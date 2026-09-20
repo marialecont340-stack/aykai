@@ -9,14 +9,12 @@
 <meta name="theme-color" content="#4d8173">
 <link rel="icon" type="image/png" href="images/logo.png">
 <link rel="apple-touch-icon" href="images/logo.png">
-<!-- Vista previa al compartir el enlace -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="AYKAI — Transformamos tu atención, cuidamos tu bienestar">
 <meta property="og:description" content="AYKAI es el asistente de salud con IA que atiende a tus pacientes por WhatsApp: agenda y consulta citas, revisa el estado de sus análisis y responde al instante. Sin llamadas y sin colas.">
 <meta property="og:image" content="images/logo.png">
 <meta name="twitter:card" content="summary_large_image">
 <style>
-  /* base reset (para el sitio desplegado en Vercel) */
   *{box-sizing:border-box}
   html,body{margin:0}
   img{max-width:100%}
@@ -145,6 +143,9 @@
   .nav{display:flex;align-items:center;gap:20px;height:66px}
   .brand{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto}
   .brand img{height:38px;width:auto}
+  /* en modo oscuro, un fondo claro sutil para que el logo se lea */
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .brand img{background:#f4f7f4;border-radius:9px;padding:4px 7px}}
+  :root[data-theme="dark"] .brand img{background:#f4f7f4;border-radius:9px;padding:4px 7px}
   .brand b{font-family:"Fraunces",serif;font-weight:600;font-size:20px;letter-spacing:.02em;color:var(--ink)}
   .nav-links{display:flex;gap:26px;align-items:center}
   .nav-links a{text-decoration:none;font-weight:600;font-size:15.5px;color:var(--ink-soft);transition:color .2s}
@@ -190,6 +191,11 @@
   .bub.in{background:var(--surface-2);border-bottom-left-radius:4px}
   .bub.out{background:var(--sage);color:#12312a;margin-left:auto;border-bottom-right-radius:4px;font-weight:600}
 
+  /* mascota (imagen) */
+  .bot-img{width:min(360px,86%);height:auto;position:relative;z-index:2;filter:drop-shadow(0 24px 34px rgba(var(--shadow),.28));animation:float 6s ease-in-out infinite}
+  .hello-bubble{position:absolute;z-index:3;top:8%;right:2%;background:var(--surface);border:1px solid var(--line);border-radius:16px 16px 16px 4px;padding:11px 16px;font-weight:700;font-size:15px;color:var(--ink);box-shadow:0 18px 36px -22px rgba(var(--shadow),.5);animation:float 6s ease-in-out infinite .6s}
+  .hello-bubble b{color:var(--sage-deep)}
+
   /* ---------- generic section ---------- */
   section{position:relative}
   .band{padding-block:clamp(52px,8vw,90px)}
@@ -225,11 +231,14 @@
 
   /* steps */
   .steps{background:var(--ground-2)}
-  .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:42px;position:relative}
-  .step{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px}
-  .step .n{font-family:"Fraunces",serif;font-size:15px;font-weight:600;color:#fff;background:var(--btn-bg);width:36px;height:36px;border-radius:50%;display:grid;place-items:center;margin-bottom:16px}
+  .como-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,5vw,60px);align-items:center}
+  .como-phone{display:flex;justify-content:center}
+  .como-phone img{width:min(300px,80%);height:auto;filter:drop-shadow(0 30px 44px rgba(var(--shadow),.32))}
+  .steps-list{display:flex;flex-direction:column;gap:14px;margin-top:30px}
+  .step{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;display:flex;gap:16px;align-items:flex-start}
+  .step .n{flex:0 0 auto;font-family:"Fraunces",serif;font-size:15px;font-weight:600;color:#fff;background:var(--btn-bg);width:36px;height:36px;border-radius:50%;display:grid;place-items:center}
   :root[data-theme="dark"] .step .n,:root:not([data-theme="light"]) .step .n{color:var(--btn-ink)}
-  .step h3{font-size:20px;margin-bottom:7px}
+  .step h3{font-size:19px;margin-bottom:5px}
   .step p{color:var(--ink-soft);font-size:15px}
 
   /* audience */
@@ -247,7 +256,10 @@
 
   /* why */
   .why{background:var(--ground-2)}
-  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 40px;margin-top:38px}
+  .why-layout{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(28px,5vw,56px);align-items:center}
+  .why-media{display:flex;justify-content:center}
+  .why-media img{width:min(340px,84%);height:auto;filter:drop-shadow(0 28px 40px rgba(var(--shadow),.3))}
+  .why-list{display:flex;flex-direction:column;margin-top:26px}
   .why-item{display:flex;gap:16px;padding:18px 0;border-top:1px solid var(--line)}
   .why-item .ic{flex:0 0 auto;width:42px;height:42px;border-radius:12px;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;color:var(--sage-deep)}
   .why-item h3{font-size:18.5px;margin-bottom:5px}
@@ -263,10 +275,12 @@
   .member.all{background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-family:"Fraunces",serif;font-style:italic;font-size:16px;color:var(--sage-deep);text-align:center}
 
   /* final cta */
-  .final{background:linear-gradient(155deg,var(--btn-bg),#2f5a4e);color:#eafaf4;text-align:center;border-radius:28px;padding:clamp(40px,7vw,72px) 28px;position:relative;overflow:hidden}
+  .final{background:linear-gradient(155deg,var(--btn-bg),#2f5a4e);color:#eafaf4;border-radius:28px;padding:clamp(40px,7vw,64px) clamp(28px,5vw,56px);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:clamp(20px,4vw,48px);flex-wrap:wrap;text-align:left}
+  .final-content{max-width:34em}
+  .final-bot{width:min(230px,60%);height:auto;flex:0 0 auto;position:relative;z-index:1;filter:drop-shadow(0 20px 30px rgba(0,0,0,.25))}
   :root[data-theme="dark"] .final,:root:not([data-theme="light"]) .final{background:linear-gradient(155deg,#1d322c,#22423a)}
   .final h2{color:#fff;font-size:clamp(28px,4vw,44px)}
-  .final p{color:#d3ede3;margin:16px auto 0;max-width:32em;font-size:18px}
+  .final p{color:#d3ede3;margin:16px 0 0;max-width:32em;font-size:18px}
   .final .btn{margin-top:30px;background:#fff;color:#23473d}
   .final .btn:hover{background:#eafaf4}
   .final .pulse-bg{position:absolute;inset:0;opacity:.14;pointer-events:none}
@@ -282,21 +296,26 @@
   .blob{position:absolute;border-radius:50%;filter:blur(50px);opacity:.55;z-index:0;pointer-events:none}
 
   @media (max-width:900px){
-    .hero-grid,.origin-grid,.aud-grid,.why-grid{grid-template-columns:1fr}
-    .cards,.steps-grid{grid-template-columns:1fr 1fr}
+    .hero-grid,.origin-grid,.aud-grid,.why-grid,.como-layout,.why-layout{grid-template-columns:1fr}
+    .cards{grid-template-columns:1fr 1fr}
     .stage{min-height:340px;margin-top:8px}
     .origin-grid{gap:30px}
+    .como-phone{order:-1}
+    .why-media{order:-1}
   }
   @media (max-width:640px){
     body{font-size:16px}
     .nav-links{display:none}
-    .cards,.steps-grid,.why-grid{grid-template-columns:1fr}
-    .chat{position:static;width:100%;max-width:300px;margin:18px auto 0;animation:none}
-    .bot{animation-duration:7s}
+    .cards{grid-template-columns:1fr}
+    .hello-bubble{top:2%;right:0}
+    .final{text-align:center}
+    .final-content{max-width:100%}
+    .final p{margin-inline:auto}
+    .final-bot{order:-1}
     .foot{justify-content:center;text-align:center;flex-direction:column}
   }
   @media (prefers-reduced-motion:reduce){
-    .bot,.chat{animation:none!important}
+    .bot-img,.hello-bubble{animation:none!important}
     html{scroll-behavior:auto}
   }
 </style>
@@ -351,49 +370,8 @@
 
     <div class="stage">
       <div class="halo"></div>
-      <!-- Mascota AYKAI (SVG a medida) -->
-      <svg class="bot" viewBox="0 0 260 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Robot AYKAI">
-        <!-- antena -->
-        <line x1="130" y1="58" x2="130" y2="24" stroke="var(--sage-deep)" stroke-width="6" stroke-linecap="round"/>
-        <circle class="glow" cx="130" cy="18" r="9" fill="var(--honey)"/>
-        <!-- orejas / auriculares -->
-        <rect x="28" y="104" width="22" height="56" rx="11" fill="var(--sage)"/>
-        <rect x="210" y="104" width="22" height="56" rx="11" fill="var(--sage)"/>
-        <!-- cabeza -->
-        <rect x="46" y="56" width="168" height="146" rx="46" fill="var(--face)"/>
-        <rect x="60" y="70" width="140" height="118" rx="36" fill="var(--face-in)"/>
-        <!-- ojos felices -->
-        <g class="glow" stroke="var(--cyan)" stroke-width="10" stroke-linecap="round" fill="none">
-          <path d="M92 118 q16 22 32 0"/>
-          <path d="M136 118 q16 22 32 0"/>
-        </g>
-        <!-- mejillas -->
-        <ellipse cx="96" cy="150" rx="13" ry="7" fill="var(--pink)" opacity=".6"/>
-        <ellipse cx="164" cy="150" rx="13" ry="7" fill="var(--pink)" opacity=".6"/>
-        <!-- sonrisa -->
-        <path class="glow" d="M116 150 q14 14 28 0" stroke="var(--cyan)" stroke-width="6.5" stroke-linecap="round" fill="none"/>
-        <!-- cuerpo -->
-        <rect x="80" y="206" width="100" height="72" rx="30" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/>
-        <!-- bracitos -->
-        <rect x="52" y="214" width="30" height="14" rx="7" fill="var(--sage)"/>
-        <rect x="178" y="214" width="30" height="14" rx="7" fill="var(--sage)"/>
-        <!-- corazón en el pecho -->
-        <path d="M130 232c-6-7-16-4-16 4 0 6 9 12 16 18 7-6 16-12 16-18 0-8-10-11-16-4Z" fill="var(--sage-deep)"/>
-      </svg>
-
-      <!-- burbuja de chat -->
-      <div class="chat">
-        <div class="top">
-          <span class="av"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.4" stroke-linecap="round"><path d="M8 11q2 3 4 0M14 11q2 3 4 0"/></svg></span>
-          <div>
-            <div class="nm">AYKAI</div>
-            <div class="st">en línea</div>
-          </div>
-        </div>
-        <div class="bub in">¿Cuándo es mi próxima cita? 🙂</div>
-        <div class="bub out">Es el martes 23, 10:00 a. m. con el Dr. Ramos, Medicina General — sede Centro.</div>
-        <div class="bub in">¡Gracias!</div>
-      </div>
+      <img class="bot-img" src="images/robot-saludo.png" alt="AYKAI, tu asistente de salud, saludando" width="700" height="840">
+      <div class="hello-bubble">¡Hola! Soy <b>AYKAI</b> <span aria-hidden="true">💚</span></div>
     </div>
   </div>
 </section>
@@ -474,27 +452,32 @@
 
 <!-- ===================== CÓMO FUNCIONA ===================== -->
 <section class="band steps" id="como">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kicker"><span class="dot"></span>En 3 pasos</span>
-      <h2>Tan fácil como enviar un mensaje</h2>
-      <p>Sin apps que descargar ni formularios eternos. Si sabes usar WhatsApp, ya sabes usar AYKAI.</p>
+  <div class="wrap como-layout">
+    <div class="como-phone">
+      <img src="images/chat-telefono.png" alt="Conversación de ejemplo con AYKAI en WhatsApp" width="620" height="1136">
     </div>
-    <div class="steps-grid">
-      <div class="step">
-        <div class="n">1</div>
-        <h3>Escríbele por WhatsApp</h3>
-        <p>Abres el chat de AYKAI como le escribirías a cualquier contacto de tu celular.</p>
+    <div class="como-body">
+      <div class="sec-head">
+        <span class="kicker"><span class="dot"></span>En 3 pasos</span>
+        <h2>Tan fácil como enviar un mensaje</h2>
+        <p>Sin apps que descargar ni formularios eternos. Si sabes usar WhatsApp, ya sabes usar AYKAI.</p>
       </div>
-      <div class="step">
-        <div class="n">2</div>
-        <h3>Identifícate con tu DNI</h3>
-        <p>Un solo dato para reconocerte y cuidar tu información. Nada de claves complicadas.</p>
-      </div>
-      <div class="step">
-        <div class="n">3</div>
-        <h3>Gestiona tu cita</h3>
-        <p>Consulta, agenda o cancela en segundos. Listo — sin colas y sin esperas.</p>
+      <div class="steps-list">
+        <div class="step">
+          <div class="n">1</div>
+          <div><h3>Escríbele por WhatsApp</h3>
+          <p>Abres el chat de AYKAI como le escribirías a cualquier contacto de tu celular.</p></div>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <div><h3>Identifícate con tu DNI</h3>
+          <p>Un solo dato para reconocerte y cuidar tu información. Nada de claves complicadas.</p></div>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <div><h3>Gestiona tu cita</h3>
+          <p>Consulta, agenda o cancela en segundos. Listo — sin colas y sin esperas.</p></div>
+        </div>
       </div>
     </div>
   </div>
@@ -532,12 +515,16 @@
 
 <!-- ===================== POR QUÉ ===================== -->
 <section class="band why">
-  <div class="wrap">
+  <div class="wrap why-layout">
+    <div class="why-media">
+      <img src="images/robot-laptop.png" alt="El robot de AYKAI trabajando con una laptop" width="780" height="780">
+    </div>
+    <div class="why-content">
     <div class="sec-head">
       <span class="kicker"><span class="dot"></span>Diferenciadores</span>
       <h2>Por qué elegir AYKAI</h2>
     </div>
-    <div class="why-grid">
+    <div class="why-list">
       <div class="why-item">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg></div>
         <div>
@@ -567,6 +554,7 @@
         </div>
       </div>
     </div>
+    </div>
   </div>
 </section>
 
@@ -595,12 +583,15 @@
   <div class="wrap">
     <div class="final">
       <svg class="pulse-bg" viewBox="0 0 1200 200" preserveAspectRatio="none" fill="none" stroke="#ffffff" stroke-width="3"><path d="M0 100h360l30-64 46 128 34-84 20 20h660"/></svg>
-      <h2>¿Listo para transformar tu atención?</h2>
-      <p>Escríbele a AYKAI y descubre lo simple que puede ser cuidar a tus pacientes.</p>
-      <a class="btn wa-link" href="#">
-        <svg class="wa" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.38a9.9 9.9 0 0 0 4.74 1.2h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.64-1.03-5.13-2.9-7A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.7-1.43 1.33-1.98 1.38-.53.05-1.02.24-3.42-.72-2.9-1.15-4.74-4.12-4.88-4.31-.14-.19-1.17-1.55-1.17-2.96s.74-2.1 1-2.39c.25-.29.55-.36.74-.36.18 0 .37 0 .53.01.17.01.4-.06.62.48.25.6.85 2.07.92 2.22.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.02 1.12 1 2.07 1.31 2.36 1.46.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.65-.15.26.1 1.66.78 1.95.93.29.15.48.22.55.34.07.12.07.7-.18 1.39Z"/></svg>
-        Hablar con AYKAI
-      </a>
+      <div class="final-content">
+        <h2>¿Listo para transformar tu atención?</h2>
+        <p>Escríbele a AYKAI y descubre lo simple que puede ser cuidar a tus pacientes.</p>
+        <a class="btn wa-link" href="#">
+          <svg class="wa" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.38a9.9 9.9 0 0 0 4.74 1.2h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.64-1.03-5.13-2.9-7A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.7-1.43 1.33-1.98 1.38-.53.05-1.02.24-3.42-.72-2.9-1.15-4.74-4.12-4.88-4.31-.14-.19-1.17-1.55-1.17-2.96s.74-2.1 1-2.39c.25-.29.55-.36.74-.36.18 0 .37 0 .53.01.17.01.4-.06.62.48.25.6.85 2.07.92 2.22.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.02 1.12 1 2.07 1.31 2.36 1.46.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.65-.15.26.1 1.66.78 1.95.93.29.15.48.22.55.34.07.12.07.7-.18 1.39Z"/></svg>
+          Hablar con AYKAI
+        </a>
+      </div>
+      <img class="final-bot" src="images/robot-like.png" alt="El robot de AYKAI levantando el pulgar" width="720" height="480">
     </div>
   </div>
 </section>
