@@ -326,6 +326,56 @@
     .bot-img,.hello-bubble{animation:none!important}
     html{scroll-behavior:auto}
   }
+
+  /* ============ reveal al hacer scroll ============ */
+  html.js-reveal .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  html.js-reveal .reveal.in{opacity:1;transform:none}
+
+  /* ============ franja de datos ============ */
+  .stats-band{background:
+    radial-gradient(120% 140% at 15% 0%, color-mix(in srgb,var(--aqua) 20%,transparent), transparent 55%),
+    radial-gradient(120% 140% at 95% 100%, color-mix(in srgb,var(--sage) 22%,transparent), transparent 55%),
+    var(--ground-2);
+    border-block:1px solid var(--line)}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;text-align:center}
+  .stat{display:flex;flex-direction:column;gap:6px;padding:8px 6px;position:relative}
+  .stat+.stat::before{content:"";position:absolute;left:-11px;top:16%;height:68%;width:1px;background:var(--line)}
+  .stat .num{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(34px,5vw,52px);line-height:1;color:var(--sage-deep);font-variant-numeric:tabular-nums}
+  .stat .lbl{font-size:13.5px;font-weight:700;color:var(--ink-soft);letter-spacing:.02em}
+
+  /* ============ frase de impacto ============ */
+  .statement-band{background:var(--ground);text-align:center;overflow:hidden}
+  .statement-inner{position:relative;padding-block:8px}
+  .statement-pulse{width:min(120px,40%);height:auto;color:var(--honey);opacity:.9;margin:0 auto 22px}
+  .statement{font-size:clamp(32px,6.2vw,68px);line-height:1.02;letter-spacing:-.02em}
+  .statement em{font-style:italic;color:var(--sage-deep)}
+  .statement .hl{position:relative;white-space:nowrap}
+  .statement .hl::after{content:"";position:absolute;left:-2%;right:-2%;bottom:.08em;height:.16em;background:var(--honey);opacity:.55;border-radius:4px;z-index:-1}
+
+  /* ============ microinteracciones extra ============ */
+  .card{position:relative;overflow:hidden}
+  .card::after{content:"";position:absolute;left:0;top:0;height:3px;width:0;background:linear-gradient(90deg,var(--sage),var(--honey));transition:width .35s ease}
+  .card:hover::after{width:100%}
+  .card:hover .ic{background:var(--sage-deep);color:#fff;transform:rotate(-4deg) scale(1.05)}
+  .card .ic{transition:background .25s ease,color .25s ease,transform .25s ease}
+  .btn-primary{position:relative;overflow:hidden}
+  .btn-primary::before{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-18deg);transition:left .6s ease}
+  .btn-primary:hover::before{left:130%}
+  .step{transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+  .step:hover{transform:translateX(4px);border-color:var(--sage)}
+  .aud{transition:transform .18s ease,box-shadow .18s ease}
+  .aud:hover{transform:translateY(-4px);box-shadow:0 24px 44px -28px rgba(var(--shadow),.5)}
+
+  /* textura suave en secciones para que no se vea plana */
+  .band{position:relative}
+  .soft-blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.4;z-index:0;pointer-events:none}
+  .wrap{position:relative;z-index:1}
+
+  @media (max-width:760px){
+    .stats{grid-template-columns:repeat(2,1fr);gap:26px 14px}
+    .stat:nth-child(3)::before,.stat:nth-child(2)::before{display:none}
+    .stat+.stat::before{display:none}
+  }
 </style>
 
 <header id="hdr">
@@ -384,6 +434,16 @@
   </div>
 </section>
 
+<!-- ===================== FRANJA DE DATOS ===================== -->
+<section class="band stats-band" style="padding-block:clamp(30px,4vw,44px)">
+  <div class="wrap stats">
+    <div class="stat"><span class="num" data-to="100" data-suffix="%">100%</span><span class="lbl">Por WhatsApp</span></div>
+    <div class="stat"><span class="num">24/7</span><span class="lbl">Siempre disponible</span></div>
+    <div class="stat"><span class="num" data-to="3">3</span><span class="lbl">Pasos y listo</span></div>
+    <div class="stat"><span class="num">0</span><span class="lbl">Colas y esperas</span></div>
+  </div>
+</section>
+
 <!-- ===================== ORIGEN ===================== -->
 <section class="band origin" id="origen">
   <div class="wrap">
@@ -409,6 +469,7 @@
 
 <!-- ===================== QUÉ HACE ===================== -->
 <section class="band" id="que-hace">
+  <div class="soft-blob" style="background:var(--aqua);width:320px;height:320px;top:60px;right:-120px"></div>
   <div class="wrap">
     <div class="sec-head">
       <span class="kicker"><span class="dot"></span>El servicio</span>
@@ -483,6 +544,18 @@
   </div>
 </section>
 
+<!-- ===================== FRASE DE IMPACTO ===================== -->
+<section class="band statement-band">
+  <div class="soft-blob" style="background:var(--aqua);width:300px;height:300px;top:-60px;left:-40px"></div>
+  <div class="soft-blob" style="background:var(--sage);width:300px;height:300px;bottom:-80px;right:-40px"></div>
+  <div class="wrap">
+    <div class="statement-inner">
+      <svg class="statement-pulse" viewBox="0 0 200 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h60l8-15 12 30 9-22 5 7h85"/></svg>
+      <h2 class="statement">Adiós a las colas.<br><em>Hola, <span class="hl">salud simple</span>.</em></h2>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== PARA QUIÉN ===================== -->
 <section class="band" id="para-quien">
   <div class="wrap">
@@ -515,6 +588,7 @@
 
 <!-- ===================== POR QUÉ ===================== -->
 <section class="band why">
+  <div class="soft-blob" style="background:var(--sage);width:340px;height:340px;top:40px;left:-120px"></div>
   <div class="wrap why-layout">
     <div class="why-media">
       <img src="images/robot-laptop.png" alt="El robot de AYKAI trabajando con una laptop" width="780" height="780">
@@ -659,6 +733,58 @@
     root.setAttribute("data-theme", next);
     try{ localStorage.setItem(KEY, next); }catch(e){}
   });
+
+  /* ===== Animaciones al hacer scroll + contadores ===== */
+  (function(){
+    var reduce = false;
+    try{ reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; }catch(e){}
+    var supports = "IntersectionObserver" in window;
+    if(reduce || !supports) return;
+
+    root.classList.add("js-reveal");
+    var sel = ".sec-head,.card,.step,.aud,.why-item,.tmember,.origin-media,.como-phone,.stat,.statement-inner,.final,.aud-note,.team-note,.devnote";
+    var els = Array.prototype.slice.call(document.querySelectorAll(sel));
+    els.forEach(function(el){ el.classList.add("reveal"); });
+
+    // pequeño escalonado entre hermanos
+    [".cards",".steps-list",".aud-grid",".why-list",".team-grid",".stats"].forEach(function(s){
+      document.querySelectorAll(s).forEach(function(par){
+        Array.prototype.slice.call(par.children).forEach(function(ch,i){
+          if(ch.classList && ch.classList.contains("reveal")) ch.style.transitionDelay=(i*70)+"ms";
+        });
+      });
+    });
+
+    function countUp(el){
+      var to = parseInt(el.getAttribute("data-to"),10);
+      if(isNaN(to)) return;
+      var suffix = el.getAttribute("data-suffix") || "";
+      var dur = 1100, start = null;
+      function step(ts){
+        if(!start) start = ts;
+        var p = Math.min((ts-start)/dur, 1);
+        var val = Math.round((1-Math.pow(1-p,3))*to);
+        el.textContent = val + suffix;
+        if(p<1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add("in");
+          var n = e.target.querySelector ? e.target.querySelector(".num[data-to]") : null;
+          if(n && !n.dataset.done){ n.dataset.done="1"; countUp(n); }
+          io.unobserve(e.target);
+        }
+      });
+    }, {rootMargin:"0px 0px -8% 0px", threshold:0.08});
+    els.forEach(function(el){ io.observe(el); });
+
+    // Salvaguarda: nada se queda oculto si algo falla
+    setTimeout(function(){ els.forEach(function(el){ el.classList.add("in"); }); }, 2500);
+  })();
 </script>
 
 </body>
