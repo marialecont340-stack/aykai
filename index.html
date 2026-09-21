@@ -1,5 +1,4 @@
-<!doctype html>
-<html lang="es"><head>
+<!doctype html><html lang="es"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AYKAI — Asistente de salud con IA por WhatsApp</title>
 <meta name="description" content="AYKAI, asistente de salud con IA por WhatsApp."><meta name="theme-color" content="#4d8173">
@@ -144,9 +143,14 @@
   .nav{display:flex;align-items:center;gap:20px;height:84px}
   .brand{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto}
   .brand img{height:48px;width:auto}
-  /* en modo oscuro, un fondo claro sutil para que el logo se lea */
-  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .brand img{background:#f4f7f4;border-radius:9px;padding:4px 7px}}
-  :root[data-theme="dark"] .brand img{background:#f4f7f4;border-radius:9px;padding:4px 7px}
+  /* logo transparente: versión clara en modo oscuro (sin fondo) */
+  .logo-dark{display:none}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .logo-light{display:none}
+    :root:not([data-theme="light"]) .logo-dark{display:block}
+  }
+  :root[data-theme="dark"] .logo-light{display:none}
+  :root[data-theme="dark"] .logo-dark{display:block}
   .brand b{font-family:"Fraunces",serif;font-weight:600;font-size:20px;letter-spacing:.02em;color:var(--ink)}
   .nav-links{display:flex;gap:26px;align-items:center}
   .nav-links a{text-decoration:none;font-weight:600;font-size:15.5px;color:var(--ink-soft);transition:color .2s}
@@ -384,7 +388,8 @@
 <header id="hdr">
   <div class="wrap nav">
     <a class="brand" href="#top" aria-label="AYKAI inicio">
-      <img src="images/logo-mark.png" alt="AYKAI">
+      <img class="logo-light" src="images/logo-mark.png" alt="AYKAI">
+      <img class="logo-dark" src="images/logo-mark-dark.png" alt="AYKAI">
     </a>
     <nav class="nav-links">
       <a href="#que-hace">Qué hace</a>
@@ -675,6 +680,7 @@
         <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </div>
     </div>
+    <p class="team-note">Y el robotito de AYKAI, armado entre todos <span aria-hidden="true">💚</span></p>
   </div>
 </section>
 
@@ -698,7 +704,7 @@
 
 <footer>
   <div class="wrap foot">
-    <a class="brand" href="#top"><img src="images/logo.png" alt="AYKAI"></a>
+    <a class="brand" href="#top"><img class="logo-light" src="images/logo.png" alt="AYKAI"><img class="logo-dark" src="images/logo-dark.png" alt="AYKAI"></a>
     <div class="slg">“Transformamos tu atención, cuidamos tu bienestar.”</div>
     <div class="meta">Proyecto AYKAI · Hecho con 💚 en Perú</div>
   </div>
