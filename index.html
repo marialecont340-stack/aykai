@@ -1,4 +1,4 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>AYKAI</title><meta name="description" content="AYKAI, asistente de salud con IA por WhatsApp."><meta name="theme-color" content="#4d8173"><link rel="icon" type="image/png" href="images/logo.png"><style>*{box-sizing:border-box}html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>AYKAI</title><link rel="icon" href="images/logo.png"><style>*{box-sizing:border-box}html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <style>
   :root{
     --ground:#EFF3EE;
@@ -262,9 +262,12 @@
   .tech .kicker{color:#ff6cc0;font-family:"Chakra Petch",ui-monospace,Menlo,monospace;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
   .tech .kicker .dot{display:none}
   .tech h2{font-family:"Chakra Petch","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.005em;line-height:1.02;font-size:clamp(30px,4.6vw,54px);
-    background:linear-gradient(100deg,#6ff5ec 0%,#7fe0ff 42%,#ff6cc0 100%);
+    background:linear-gradient(90deg,#5cf0e6,#7fb3ff,#c98bff,#ff6cc0,#c98bff,#7fb3ff,#5cf0e6);
+    background-size:220% auto;
     -webkit-background-clip:text;background-clip:text;color:transparent;
-    filter:drop-shadow(0 0 16px rgba(92,240,230,.35))}
+    filter:drop-shadow(0 0 16px rgba(120,200,255,.38));
+    animation:titleShift 7s linear infinite}
+  @keyframes titleShift{0%{background-position:0% 50%}100%{background-position:220% 50%}}
   .tech .sec-head{max-width:none}
   .tech .sec-head p{color:#b7cfd6;font-size:clamp(16px,1.8vw,18px)}
   .tech::before{content:"";position:absolute;inset:0;z-index:-2;
@@ -291,12 +294,13 @@
   .comp-tag{flex:0 0 auto;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-weight:700;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#5cf0e6;background:rgba(92,240,230,.12);border:1px solid rgba(92,240,230,.4);padding:4px 9px;border-radius:6px;box-shadow:0 0 14px -4px rgba(92,240,230,.5)}
   .comp-item .chev{flex:0 0 auto;color:#5cc9c2;transition:transform .25s ease}
   .comp-item[open] .chev{transform:rotate(90deg);color:#5cf0e6}
-  .comp-body{color:#b7cfd6;font-size:15px;line-height:1.6;padding-bottom:16px}
+  .comp-body{display:flex;align-items:center;gap:26px;color:#b7cfd6;font-size:15px;line-height:1.6;padding:8px 2px 22px}
+  .comp-body p{flex:1 1 auto;margin:0}
   .comp-body b{color:#eafcf8}
-  .comp-stage{position:relative;display:flex;justify-content:center;padding:10px 0 28px}
-  .comp-stage::after{content:"";position:absolute;bottom:18px;left:50%;transform:translateX(-50%);width:170px;height:22px;border-radius:50%;background:radial-gradient(closest-side,rgba(92,240,230,.6),transparent);filter:blur(4px)}
-  .comp-img{position:relative;z-index:1;width:min(230px,64%);height:auto;filter:drop-shadow(0 0 20px rgba(92,240,230,.3)) drop-shadow(0 22px 26px rgba(0,0,0,.6));animation:levitate 4.8s ease-in-out infinite}
-  .comp-img-phone{width:min(150px,42%)}
+  .comp-stage{flex:0 0 auto;position:relative;display:flex;justify-content:center;align-items:center;width:42%;max-width:230px;padding:16px 6px 24px}
+  .comp-stage::after{content:"";position:absolute;bottom:12px;left:50%;transform:translateX(-50%);width:78%;height:20px;border-radius:50%;background:radial-gradient(closest-side,rgba(92,240,230,.6),transparent);filter:blur(4px)}
+  .comp-img{position:relative;z-index:1;width:100%;max-width:210px;height:auto;filter:drop-shadow(0 0 20px rgba(92,240,230,.3)) drop-shadow(0 22px 26px rgba(0,0,0,.6));animation:levitate 4.8s ease-in-out infinite}
+  .comp-img-phone{max-width:135px}
   @keyframes levitate{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
   .tech-video{display:flex;flex-direction:column;align-items:center;gap:16px}
   .iphone{position:relative;width:min(262px,78%)}
@@ -414,8 +418,12 @@
     .brand img{height:36px}
   }
   @media (prefers-reduced-motion:reduce){
-    .bot-img,.hello-bubble,.comp-img{animation:none!important}
+    .bot-img,.hello-bubble,.comp-img,.tech h2{animation:none!important}
     html{scroll-behavior:auto}
+  }
+  @media (max-width:700px){
+    .comp-body{flex-direction:column;gap:12px;align-items:flex-start}
+    .comp-stage{width:100%;max-width:200px;align-self:center}
   }
 
   /* ============ reveal al hacer scroll ============ */
@@ -922,5 +930,4 @@
     setTimeout(function(){ els.forEach(function(el){ el.classList.add("in"); }); }, 2500);
   })();
 </script>
-
 </body></html>
