@@ -349,15 +349,28 @@
   .team-note{margin-top:20px;text-align:center;font-family:"Fraunces",serif;font-style:italic;font-size:17px;color:var(--sage-deep)}
 
   /* final cta */
-  .final{background:linear-gradient(155deg,var(--btn-bg),#2f5a4e);color:#eafaf4;border-radius:28px;padding:clamp(40px,7vw,64px) clamp(28px,5vw,56px);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:clamp(20px,4vw,48px);flex-wrap:wrap;text-align:left}
-  .final-content{max-width:34em}
-  .final-bot{width:min(310px,74%);height:auto;flex:0 0 auto;position:relative;z-index:1;filter:drop-shadow(0 20px 30px rgba(0,0,0,.25))}
-  :root[data-theme="dark"] .final,:root:not([data-theme="light"]) .final{background:linear-gradient(155deg,#1d322c,#22423a)}
-  .final h2{color:#fff;font-size:clamp(28px,4vw,44px)}
-  .final p{color:#d3ede3;margin:16px 0 0;max-width:32em;font-size:18px}
-  .final .btn{margin-top:30px;background:#fff;color:#23473d}
-  .final .btn:hover{background:#eafaf4}
-  .final .pulse-bg{position:absolute;inset:0;opacity:.14;pointer-events:none}
+  .final{position:relative;overflow:hidden;color:#eafaf4;border-radius:28px;padding:clamp(40px,7vw,64px) clamp(28px,5vw,56px);display:flex;align-items:center;justify-content:center;gap:clamp(20px,4vw,48px);flex-wrap:wrap;text-align:left;
+    background:
+      radial-gradient(55% 85% at 84% 62%, rgba(155,245,225,.42), transparent 62%),
+      radial-gradient(45% 65% at 8% 4%, rgba(120,225,180,.30), transparent 60%),
+      linear-gradient(145deg,#30a684,#1f8069 46%,#134f43);
+    box-shadow:0 30px 70px -30px rgba(18,74,60,.6), inset 0 1px 0 rgba(255,255,255,.14)}
+  .final::before{content:"";position:absolute;z-index:0;right:3%;top:50%;width:min(440px,62%);aspect-ratio:1;border-radius:50%;pointer-events:none;
+    background:radial-gradient(closest-side, rgba(170,250,232,.55), rgba(120,220,180,.16) 56%, transparent 72%);
+    filter:blur(6px);transform:translateY(-50%);animation:glowPulse 5s ease-in-out infinite}
+  @keyframes glowPulse{0%,100%{opacity:.7;transform:translateY(-50%) scale(1)}50%{opacity:1;transform:translateY(-50%) scale(1.09)}}
+  .final-content{position:relative;z-index:2;max-width:34em}
+  .final-bot{width:min(310px,74%);height:auto;flex:0 0 auto;position:relative;z-index:2;filter:drop-shadow(0 0 34px rgba(175,250,232,.6)) drop-shadow(0 22px 30px rgba(0,0,0,.32))}
+  :root[data-theme="dark"] .final,:root:not([data-theme="light"]) .final{
+    background:
+      radial-gradient(55% 85% at 84% 62%, rgba(120,235,210,.32), transparent 62%),
+      radial-gradient(45% 65% at 8% 4%, rgba(90,205,165,.24), transparent 60%),
+      linear-gradient(145deg,#1c5749,#123f36 55%,#0b2c27)}
+  .final h2{color:#fff;font-size:clamp(28px,4vw,44px);text-shadow:0 0 28px rgba(160,245,225,.4)}
+  .final p{color:#dcf5ec;margin:16px 0 0;max-width:32em;font-size:18px}
+  .final .btn{margin-top:30px;background:#fff;color:#14584a;box-shadow:0 0 34px rgba(185,255,238,.55), 0 12px 26px -10px rgba(0,0,0,.35)}
+  .final .btn:hover{background:#eafaf4;box-shadow:0 0 44px rgba(185,255,238,.7), 0 12px 26px -8px rgba(0,0,0,.35)}
+  .final .pulse-bg{position:absolute;inset:0;z-index:1;opacity:.3;pointer-events:none;filter:drop-shadow(0 0 6px rgba(170,250,232,.7))}
 
   /* footer */
   footer{padding-block:44px 40px}
@@ -418,7 +431,7 @@
     .brand img{height:36px}
   }
   @media (prefers-reduced-motion:reduce){
-    .bot-img,.hello-bubble,.comp-img,.tech h2{animation:none!important}
+    .bot-img,.hello-bubble,.comp-img,.tech h2,.final::before{animation:none!important}
     html{scroll-behavior:auto}
   }
   @media (max-width:700px){
@@ -787,7 +800,7 @@
     <div class="team-grid">
       <div class="tmember">
         <span class="avatar" style="background:linear-gradient(145deg,#83AA9F,#4d8173)">MJ<img src="images/equipo/maria-alejandra.jpeg" alt="María Alejandra Jiménez" onerror="this.remove()"></span>
-        <span class="info"><span class="nm">María Alejandra Jiménez</span><span class="rl">Desarrollo del asistente y base de datos</span></span>
+        <span class="info"><span class="nm">María Alejandra Jiménez</span><span class="rl">Desarrollo del asistente y landing page</span></span>
         <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </div>
       <div class="tmember">
@@ -816,7 +829,6 @@
         <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </div>
     </div>
-    <p class="team-note">Y el robotito de AYKAI, armado entre todos <span aria-hidden="true">💚</span></p>
   </div>
 </section>
 
