@@ -1,22 +1,4 @@
-<!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>AYKAI — Asistente de salud con IA por WhatsApp</title>
-<meta name="description" content="AYKAI es el asistente de salud con IA que atiende a tus pacientes por WhatsApp: agenda y consulta citas, revisa el estado de sus análisis y responde al instante. Sin llamadas y sin colas.">
-<meta name="theme-color" content="#4d8173">
-<link rel="icon" type="image/png" href="images/logo.png">
-<meta property="og:type" content="website">
-<meta property="og:title" content="AYKAI — Transformamos tu atención, cuidamos tu bienestar">
-<meta property="og:description" content="AYKAI es el asistente de salud con IA que atiende a tus pacientes por WhatsApp: agenda y consulta citas, revisa el estado de sus análisis y responde al instante. Sin llamadas y sin colas.">
-<meta property="og:image" content="images/logo.png">
-<style>
-  *{box-sizing:border-box}
-  html,body{margin:0}
-  img{max-width:100%}
-  [hidden]{display:none!important}
-</style>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>AYKAI — Asistente de salud con IA por WhatsApp</title><meta name="description" content="AYKAI, asistente de salud con IA por WhatsApp."><meta name="theme-color" content="#4d8173"><link rel="icon" type="image/png" href="images/logo.png"><meta property="og:type" content="website"><meta property="og:image" content="images/logo.png"><style>*{box-sizing:border-box}html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <style>
   :root{
     --ground:#EFF3EE;
@@ -219,10 +201,12 @@
 
   /* origin */
   .origin{background:var(--ground-2)}
-  .origin-grid{display:grid;grid-template-columns:1fr .95fr;gap:40px;align-items:center;margin-top:8px}
+  .origin-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:44px;align-items:center;margin-top:8px}
   .origin-grid .body p+p{margin-top:16px}
   .origin-media{display:flex;justify-content:center}
-  .origin-media img{width:min(390px,100%);height:auto;filter:drop-shadow(0 30px 44px rgba(var(--shadow),.32))}
+  .media-stack{position:relative;width:100%;max-width:560px}
+  .media-main{width:100%;height:auto;border-radius:22px;box-shadow:0 30px 52px -26px rgba(var(--shadow),.42)}
+  .media-float{position:absolute;left:-5%;bottom:-12%;width:31%;height:auto;border-radius:16px;transform:rotate(-5deg);filter:drop-shadow(0 18px 26px rgba(var(--shadow),.4))}
   .namecard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:0 18px 40px -28px rgba(var(--shadow),.5)}
   .namecard .lbl{font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
   .etym{display:flex;flex-direction:column;gap:12px;margin:16px 0 4px}
@@ -243,6 +227,23 @@
   .card h3{font-size:19.5px;margin-bottom:7px}
   .card p{font-size:15px;color:var(--ink-soft)}
 
+  /* qué hace — acordeón desplegable */
+  .quehace-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,56px);align-items:center}
+  .quehace-media{display:flex;justify-content:center}
+  .quehace-media img{width:min(360px,90%);height:auto;filter:drop-shadow(0 26px 42px rgba(var(--shadow),.34))}
+  .acc{margin-top:28px;display:flex;flex-direction:column;border-top:1px solid var(--line)}
+  .acc-item{border-bottom:1px solid var(--line)}
+  .acc-item>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:13px;padding:15px 2px;font-weight:800;font-size:16.5px;color:var(--ink)}
+  .acc-item>summary::-webkit-details-marker{display:none}
+  .acc-item>summary:hover{color:var(--sage-deep)}
+  .acc-ic{flex:0 0 auto;width:38px;height:38px;border-radius:11px;background:var(--surface-2);color:var(--sage-deep);display:grid;place-items:center;transition:background .2s ease,color .2s ease}
+  .acc-item[open] .acc-ic{background:var(--sage-deep);color:#fff}
+  .acc-t{flex:1 1 auto;min-width:0}
+  .chev{flex:0 0 auto;color:var(--ink-soft);transition:transform .25s ease}
+  .acc-item[open] .chev{transform:rotate(90deg);color:var(--sage-deep)}
+  .acc-body{padding:0 2px 16px 51px;color:var(--ink-soft);font-size:15px;line-height:1.55}
+  .acc-body p{margin:0}
+
   /* steps */
   .steps{background:var(--ground-2)}
   .como-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,5vw,60px);align-items:center}
@@ -254,6 +255,46 @@
   :root[data-theme="dark"] .step .n,:root:not([data-theme="light"]) .step .n{color:var(--btn-ink)}
   .step h3{font-size:19px;margin-bottom:5px}
   .step p{color:var(--ink-soft);font-size:15px}
+
+  /* ===== tecnología · el robot por dentro (aura tech, siempre oscuro) ===== */
+  .tech{--ink:#eef5f0;--ink-soft:#a9c4bb;--sage-deep:#8fe3dd;--line:rgba(143,225,221,.18);
+        color:#eef5f0;position:relative;isolation:isolate;overflow:hidden}
+  .tech .kicker{color:#8fe3dd}
+  .tech h2{color:#f2f8f4}
+  .tech .sec-head p{color:#a9c4bb}
+  .tech::before{content:"";position:absolute;inset:0;z-index:-2;
+    background:
+      radial-gradient(75% 55% at 18% 6%, rgba(143,225,221,.16), transparent 60%),
+      radial-gradient(70% 60% at 92% 96%, rgba(76,129,115,.30), transparent 60%),
+      linear-gradient(160deg,#102420,#0b1815)}
+  .tech::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.6;
+    background-image:linear-gradient(rgba(143,225,221,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(143,225,221,.07) 1px,transparent 1px);
+    background-size:36px 36px;
+    -webkit-mask-image:radial-gradient(75% 70% at 50% 22%,#000,transparent 78%);
+            mask-image:radial-gradient(75% 70% at 50% 22%,#000,transparent 78%)}
+  .tech-layout{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(24px,4vw,56px);align-items:center;margin-top:46px}
+  .tech-acc{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+  .comp-item{border-bottom:1px solid var(--line)}
+  .comp-item>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:17px 2px;font-family:"Fraunces",serif;font-weight:600;font-size:20px;color:#eef5f0}
+  .comp-item>summary::-webkit-details-marker{display:none}
+  .comp-item>summary:hover{color:#8fe3dd}
+  .comp-t{flex:1 1 auto;min-width:0}
+  .comp-tag{flex:0 0 auto;font-family:"Nunito Sans",sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#8fe3dd;background:rgba(143,225,221,.12);border:1px solid rgba(143,225,221,.25);padding:4px 9px;border-radius:100px}
+  .comp-item .chev{flex:0 0 auto;color:#6fb0a8;transition:transform .25s ease}
+  .comp-item[open] .chev{transform:rotate(90deg);color:#8fe3dd}
+  .comp-body{color:#a9c4bb;font-size:15px;line-height:1.6;padding-bottom:16px}
+  .comp-body b{color:#dff1ec}
+  .comp-stage{position:relative;display:flex;justify-content:center;padding:10px 0 26px}
+  .comp-stage::after{content:"";position:absolute;bottom:18px;left:50%;transform:translateX(-50%);width:160px;height:20px;border-radius:50%;background:radial-gradient(closest-side,rgba(143,225,221,.45),transparent);filter:blur(3px)}
+  .comp-img{position:relative;z-index:1;width:min(230px,64%);height:auto;filter:drop-shadow(0 22px 26px rgba(0,0,0,.55));animation:levitate 4.8s ease-in-out infinite}
+  .comp-img-phone{width:min(150px,42%)}
+  @keyframes levitate{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+  .tech-video{display:flex;flex-direction:column;align-items:center;gap:16px}
+  .iphone{position:relative;width:min(262px,78%)}
+  .iphone-frame{display:block;width:100%;height:auto;position:relative;z-index:1;pointer-events:none;
+    filter:drop-shadow(0 0 24px rgba(143,225,221,.28)) drop-shadow(0 30px 42px rgba(0,0,0,.55))}
+  .dev-video{position:absolute;z-index:2;top:0.9%;left:2.6%;width:94.4%;height:98.2%;object-fit:cover;border-radius:9% / 4%;background:#0c1917}
+  .video-cap{color:#a9c4bb;font-family:"Fraunces",serif;font-style:italic;font-size:15.5px}
 
   /* audience */
   .aud-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px}
@@ -316,17 +357,41 @@
   .blob{position:absolute;border-radius:50%;filter:blur(50px);opacity:.55;z-index:0;pointer-events:none}
 
   @media (max-width:900px){
-    .hero-grid,.origin-grid,.aud-grid,.why-grid,.como-layout,.why-layout{grid-template-columns:1fr}
+    .hero-grid,.origin-grid,.aud-grid,.why-grid,.como-layout,.why-layout,.quehace-layout{grid-template-columns:1fr}
     .cards,.team-grid{grid-template-columns:1fr 1fr}
     .stage{min-height:340px;margin-top:8px}
     .origin-grid{gap:30px}
     .como-phone{order:-1}
     .why-media{order:-1}
+    .quehace-media{order:-1;margin-bottom:6px}
+    .media-stack{max-width:440px}
+    .tech-layout{gap:18px}
+    .iphone{width:min(200px,90%)}
+    .comp-img{width:min(190px,58%)}
+  }
+  /* menú: ocultar links antes para que no se corte el botón */
+  @media (max-width:860px){.nav-links{display:none}}
+  /* la sección tech mantiene el iPhone AL LADO del acordeón; solo se apila en celular muy angosto */
+  @media (max-width:480px){
+    .tech-layout{grid-template-columns:1fr}
+    .tech-video{order:-1;margin-bottom:12px}
+    .iphone{width:min(240px,70%)}
+    .comp-img{width:min(200px,58%)}
   }
   @media (max-width:640px){
     body{font-size:16px}
     .nav-links{display:none}
+    .nav{gap:10px;height:70px}
+    .brand img{height:40px}
+    .icon-btn{width:38px;height:38px}
+    .nav .btn{padding:9px 13px;font-size:13px}
+    .nav .btn .wa{width:17px;height:17px}
     .cards,.team-grid{grid-template-columns:1fr}
+    .tech-layout{gap:14px}
+    .iphone{width:min(150px,48%)}
+    .comp-img{width:min(140px,52%)}
+    .comp-item>summary{font-size:16px;gap:8px}
+    .comp-tag{display:none}
     .hello-bubble{top:2%;right:0}
     .final{text-align:center}
     .final-content{max-width:100%}
@@ -334,8 +399,13 @@
     .final-bot{order:-1}
     .foot{justify-content:center;text-align:center;flex-direction:column}
   }
+  @media (max-width:380px){
+    .wrap{padding-inline:16px}
+    .nav .btn{padding:8px 11px;font-size:12px}
+    .brand img{height:36px}
+  }
   @media (prefers-reduced-motion:reduce){
-    .bot-img,.hello-bubble{animation:none!important}
+    .bot-img,.hello-bubble,.comp-img{animation:none!important}
     html{scroll-behavior:auto}
   }
 
@@ -379,7 +449,8 @@
   .aud:hover{box-shadow:inset 10px 10px 21px var(--sink-dark), inset -7px -7px 15px var(--sink-light)}
 
   /* textura suave en secciones para que no se vea plana */
-  .band{position:relative}
+  .band{position:relative;overflow-x:clip}
+  .hero{overflow-x:clip}
   .soft-blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.4;z-index:0;pointer-events:none}
   .wrap{position:relative;z-index:1}
 
@@ -475,7 +546,10 @@
         </div>
       </div>
       <aside class="origin-media">
-        <img src="images/significado.png" alt="Qué significa AYKAI: Ayni (quechua: ayudar en reciprocidad) + kai (japonés: cambiar) + AI (inteligencia artificial) = cambiar para ayudar" width="800" height="1200">
+        <div class="media-stack">
+          <img class="media-main" src="images/significado.png" alt="El equipo de AYKAI trabajando junto al asistente">
+          <img class="media-float" src="images/integraciones.png" alt="Integraciones de AYKAI: n8n, Vercel y GitHub conectados">
+        </div>
       </aside>
     </div>
   </div>
@@ -484,43 +558,66 @@
 <!-- ===================== QUÉ HACE ===================== -->
 <section class="band" id="que-hace">
   <div class="soft-blob" style="background:var(--aqua);width:320px;height:320px;top:60px;right:-120px"></div>
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kicker"><span class="dot"></span>El servicio</span>
-      <h2>Qué hace AYKAI</h2>
-      <p>Todo lo que un paciente necesita resolver de su atención, en un mismo chat y en segundos.</p>
+  <div class="wrap quehace-layout">
+    <div class="quehace-body">
+      <div class="sec-head">
+        <span class="kicker"><span class="dot"></span>El servicio</span>
+        <h2>Qué hace AYKAI</h2>
+        <p>Todo lo que un paciente necesita resolver de su atención, en un mismo chat. Toca cada opción para ver el detalle.</p>
+      </div>
+      <div class="acc">
+        <details class="acc-item" open>
+          <summary>
+            <span class="acc-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+            <span class="acc-t">Consulta tu próxima cita</span>
+            <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </summary>
+          <div class="acc-body"><p>Fecha, hora, doctor, especialidad y sede — al toque, sin buscar entre papeles.</p></div>
+        </details>
+        <details class="acc-item">
+          <summary>
+            <span class="acc-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v5l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M7.5 14h9"/></svg></span>
+            <span class="acc-t">Estado de tus análisis</span>
+            <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </summary>
+          <div class="acc-body"><p>Te avisa cuando tus resultados de laboratorio ya están listos para recoger.</p></div>
+        </details>
+        <details class="acc-item">
+          <summary>
+            <span class="acc-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4"/></svg></span>
+            <span class="acc-t">Agenda una cita</span>
+            <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </summary>
+          <div class="acc-body"><p>Elige día, sede y hora según la disponibilidad real, directo desde el chat.</p></div>
+        </details>
+        <details class="acc-item">
+          <summary>
+            <span class="acc-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18M9.5 15.5l5 5M14.5 15.5l-5 5"/></svg></span>
+            <span class="acc-t">Cancela sin trámites</span>
+            <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </summary>
+          <div class="acc-body"><p>¿No puedes asistir? Cancela al instante y liberas el cupo para alguien más.</p></div>
+        </details>
+        <details class="acc-item">
+          <summary>
+            <span class="acc-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a4 4 0 0 1-4 4H8l-4 3V7a4 4 0 0 1 4-4h9a4 4 0 0 1 4 4z"/><path d="M9 10h.01M13 10h.01M8 13q4 3 8 0"/></svg></span>
+            <span class="acc-t">Trato cálido y cercano</span>
+            <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </summary>
+          <div class="acc-body"><p>Habla claro y con paciencia, pensado también para los adultos mayores.</p></div>
+        </details>
+        <details class="acc-item">
+          <summary>
+            <span class="acc-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M12 8v4M12 15h.01"/></svg></span>
+            <span class="acc-t">Respuestas responsables</span>
+            <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </summary>
+          <div class="acc-body"><p>Ante un síntoma, siempre recomienda acudir a un médico. Nunca diagnostica ni saca conclusiones.</p></div>
+        </details>
+      </div>
     </div>
-    <div class="cards">
-      <div class="card">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
-        <h3>Consulta tu próxima cita</h3>
-        <p>Fecha, hora, doctor, especialidad y sede — al toque, sin buscar entre papeles.</p>
-      </div>
-      <div class="card">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v5l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M7.5 14h9"/></svg></div>
-        <h3>Estado de tus análisis</h3>
-        <p>Te avisa cuando tus resultados de laboratorio ya están listos para recoger.</p>
-      </div>
-      <div class="card">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4"/></svg></div>
-        <h3>Agenda una cita</h3>
-        <p>Elige día, sede y hora según la disponibilidad real, directo desde el chat.</p>
-      </div>
-      <div class="card">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18M9.5 15.5l5 5M14.5 15.5l-5 5"/></svg></div>
-        <h3>Cancela sin trámites</h3>
-        <p>¿No puedes asistir? Cancela al instante y liberas el cupo para alguien más.</p>
-      </div>
-      <div class="card">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a4 4 0 0 1-4 4H8l-4 3V7a4 4 0 0 1 4-4h9a4 4 0 0 1 4 4z"/><path d="M9 10h.01M13 10h.01M8 13q4 3 8 0"/></svg></div>
-        <h3>Trato cálido y cercano</h3>
-        <p>Habla claro y con paciencia, pensado también para los adultos mayores.</p>
-      </div>
-      <div class="card">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M12 8v4M12 15h.01"/></svg></div>
-        <h3>Respuestas responsables</h3>
-        <p>Ante un síntoma, siempre recomienda acudir a un médico. Nunca diagnostica ni saca conclusiones.</p>
-      </div>
+    <div class="quehace-media">
+      <img src="images/chat-robot.png" alt="AYKAI respondiendo a un paciente por WhatsApp">
     </div>
   </div>
 </section>
@@ -600,48 +697,60 @@
   </div>
 </section>
 
-<!-- ===================== POR QUÉ ===================== -->
-<section class="band why">
-  <div class="soft-blob" style="background:var(--sage);width:340px;height:340px;top:40px;left:-120px"></div>
-  <div class="wrap why-layout">
-    <div class="why-media">
-      <img src="images/robot-laptop.png" alt="El robot de AYKAI trabajando con una laptop" width="780" height="780">
+<!-- ===================== TECNOLOGÍA / EL ROBOT POR DENTRO ===================== -->
+<section class="band tech" id="tecnologia">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="kicker" style="justify-content:center"><span class="dot"></span>Detrás de cámaras</span>
+      <h2>El robot por dentro</h2>
+      <p>Un vistazo a las piezas y las plataformas que hacen posible a AYKAI. Toca cada una para verla.</p>
     </div>
-    <div class="why-content">
-    <div class="sec-head">
-      <span class="kicker"><span class="dot"></span>Diferenciadores</span>
-      <h2>Por qué elegir AYKAI</h2>
-    </div>
-    <div class="why-list">
-      <div class="why-item">
-        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg></div>
-        <div>
-          <h3>Nos adaptamos a ti</h3>
-          <p>No hacemos un solo producto: creamos <span class="term">workers</span> de IA a la medida de cada institución. Un <em>worker</em> es un asistente que trabaja por ti, sin descansar.</p>
-        </div>
+    <div class="tech-layout">
+      <div class="tech-acc">
+        <details class="comp-item" open>
+          <summary>
+            <span class="comp-t">Pantalla TFT</span>
+            <span class="comp-tag">Pantalla</span>
+            <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </summary>
+          <div class="comp-body">
+            <div class="comp-stage"><img class="comp-img" src="images/componentes/tft-image.png" alt="Pantalla TFT del robot AYKAI" onerror="this.style.display='none'"></div>
+            <p>La carita del robot. En esta pantalla AYKAI muestra sus ojos y expresiones en tiempo real, dándole calidez y personalidad.</p>
+          </div>
+        </details>
+        <details class="comp-item">
+          <summary>
+            <span class="comp-t">ESP32</span>
+            <span class="comp-tag">Cerebro</span>
+            <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </summary>
+          <div class="comp-body">
+            <div class="comp-stage"><img class="comp-img" src="images/componentes/esp32-image.png" alt="Microcontrolador ESP32" onerror="this.style.display='none'"></div>
+            <p>El microcontrolador que hace de cerebro: se conecta al WiFi, controla la pantalla y da vida a las expresiones del robot.</p>
+          </div>
+        </details>
+        <details class="comp-item">
+          <summary>
+            <span class="comp-t">Plataformas de desarrollo</span>
+            <span class="comp-tag">Software</span>
+            <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </summary>
+          <div class="comp-body">
+            <div class="comp-stage"><img class="comp-img comp-img-phone" src="images/integraciones.png" alt="Plataformas: n8n, Vercel y GitHub" onerror="this.style.display='none'"></div>
+            <p><b>n8n</b> automatiza el flujo del asistente, <b>GitHub</b> guarda y versiona el código, y <b>Vercel</b> despliega la web. Todo conectado.</p>
+          </div>
+        </details>
       </div>
-      <div class="why-item">
-        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21C5 16 3 12 3 8.5A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 9 2.5C21 12 19 16 12 21Z"/></svg></div>
-        <div>
-          <h3>Pensamos en lo público</h3>
-          <p>La mayoría de chatbots apuntan solo a clínicas privadas. Nosotros empezamos por quienes más lo necesitan y menos opciones tienen.</p>
+
+      <div class="tech-video">
+        <div class="iphone">
+          <img class="iphone-frame" src="images/iphonevideo-image.png" alt="iPhone mostrando el video de AYKAI">
+          <video class="dev-video" autoplay muted loop playsinline poster="images/video-poster.png">
+            <source src="video/desarrollo.mp4" type="video/mp4">
+          </video>
         </div>
+        <p class="video-cap">Así se veía AYKAI en desarrollo</p>
       </div>
-      <div class="why-item">
-        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="14" height="12" rx="4"/><path d="M12 3v4M9 13h.01M15 13h.01"/></svg></div>
-        <div>
-          <h3>Con rostro propio</h3>
-          <p>Además del chat, AYKAI tiene un pequeño robot de expresiones cálidas que le da identidad y cercanía a la marca.</p>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/></svg></div>
-        <div>
-          <h3>Vamos más allá del software</h3>
-          <p>Nuestra visión no se queda en una pantalla: exploramos la robótica para transformar procesos y negocios.</p>
-        </div>
-      </div>
-    </div>
     </div>
   </div>
 </section>
@@ -756,12 +865,12 @@
     if(reduce || !supports) return;
 
     root.classList.add("js-reveal");
-    var sel = ".sec-head,.card,.step,.aud,.why-item,.tmember,.origin-media,.como-phone,.stat,.statement-inner,.final,.aud-note,.team-note,.devnote";
+    var sel = ".sec-head,.acc-item,.step,.aud,.comp-item,.tech-video,.tmember,.origin-media,.como-phone,.quehace-media,.stat,.statement-inner,.final,.aud-note,.team-note,.devnote";
     var els = Array.prototype.slice.call(document.querySelectorAll(sel));
     els.forEach(function(el){ el.classList.add("reveal"); });
 
     // pequeño escalonado entre hermanos
-    [".cards",".steps-list",".aud-grid",".why-list",".team-grid",".stats"].forEach(function(s){
+    [".acc",".steps-list",".aud-grid",".tech-acc",".team-grid",".stats"].forEach(function(s){
       document.querySelectorAll(s).forEach(function(par){
         Array.prototype.slice.call(par.children).forEach(function(ch,i){
           if(ch.classList && ch.classList.contains("reveal")) ch.style.transitionDelay=(i*70)+"ms";
@@ -801,5 +910,4 @@
   })();
 </script>
 
-</body>
-</html>
+</body></html>
