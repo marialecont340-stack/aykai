@@ -1,4 +1,4 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>AYKAI — Asistente de salud con IA por WhatsApp</title><meta name="description" content="AYKAI es el asistente de salud con IA que atiende a tus pacientes por WhatsApp: agenda y consulta citas, revisa el estado de sus análisis y responde al instante. Sin llamadas y sin colas."><meta name="theme-color" content="#4d8173"><link rel="icon" type="image/png" href="images/logo.png"><meta property="og:type" content="website"><meta property="og:title" content="AYKAI — Transformamos tu atención, cuidamos tu bienestar"><meta property="og:description" content="AYKAI es el asistente de salud con IA que atiende a tus pacientes por WhatsApp: agenda y consulta citas, revisa el estado de sus análisis y responde al instante. Sin llamadas y sin colas."><meta property="og:image" content="images/logo.png"><style>*{box-sizing:border-box}html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>AYKAI — Asistente de salud con IA por WhatsApp</title><meta name="description" content="AYKAI es el asistente de salud con IA que atiende a tus pacientes por WhatsApp: agenda y consulta citas, revisa el estado de sus análisis y responde al instante. Sin llamadas y sin colas."><meta name="theme-color" content="#4d8173"><link rel="icon" type="image/png" href="images/logo.png"><meta property="og:type" content="website"><meta property="og:title" content="AYKAI — Transformamos tu atención, cuidamos tu bienestar"><meta property="og:description" content="AYKAI es el asistente de salud con IA que atiende a tus pacientes por WhatsApp: agenda y consulta citas, revisa el estado de sus análisis y responde al instante. Sin llamadas y sin colas."><meta property="og:image" content="images/logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Chakra+Petch:wght@600;700&display=swap" rel="stylesheet"><style>*{box-sizing:border-box}html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <style>
   :root{
     --ground:#EFF3EE;
@@ -490,6 +490,128 @@
     .stat+.stat::before{display:none}
   }
 
+
+  /* =====================================================================
+     REDISEÑO · basado en DESIGN.md (estructura editorial) + colores AYKAI
+     - Una sola tipografía (Inter) en 700 con tracking apretado para títulos
+     - Texto de lectura 18px / 1.61
+     - Sin sombras: la profundidad viene del cambio de color de fondo
+     - Botones siempre píldora; tarjetas con bordes rectos
+     - Un solo bloque destacado de color por página
+     - Franjas oscuras que alternan con fondos claros
+     ===================================================================== */
+  :root{
+    --maxw:1200px;
+    --night:#16292c;          /* franjas oscuras (verde noche AYKAI) */
+    --night-2:#0f1f21;        /* pie de página */
+    --font:"Inter","Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+  }
+  :root[data-theme="dark"]{--night:#0c1716;--night-2:#08100f}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--night:#0c1716;--night-2:#08100f}}
+
+  body{font-family:var(--font);font-size:18px;line-height:1.61}
+  h1,h2,h3,.statement,.etym .word,.namecard .concl,.step .n,.avatar,.team-note,.foot .slg,.brand b{font-family:var(--font)}
+  h1,h2,h3{font-weight:700;letter-spacing:-.02em;line-height:1.02}
+  h1 em,h2 em,.statement em,.hero h1 em{font-style:normal;color:var(--sage-deep)}
+
+  /* espaciado amplio */
+  .band{padding-block:clamp(72px,10vw,120px)}
+  .wrap{padding-inline:clamp(16px,3vw,28px)}
+  h2{font-size:clamp(34px,4.8vw,58px)}
+  .sec-head{max-width:40em}
+  .sec-head p{font-size:18px;margin-top:20px}
+  .kicker{font-size:13px;letter-spacing:.12em}
+
+  /* botones: píldora, sin sombra */
+  .btn{font-size:17px;font-weight:700;padding:15px 24px 16px;border-radius:1000px}
+  .btn-primary,.final .btn,.final .btn:hover{box-shadow:none}
+  .btn-primary{background:var(--ink);color:var(--surface)}
+  .btn-primary:hover{background:var(--sage-deep);transform:none}
+  .btn-ghost{border:1px solid var(--ink);color:var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+  .icon-btn{border-radius:50%}
+
+  /* navegación */
+  header{background:color-mix(in srgb, var(--surface) 86%, transparent)}
+  .nav-links a{font-size:16px;font-weight:500;color:var(--ink)}
+  .nav .btn{font-size:15px;padding:11px 18px}
+
+  /* hero: titular grande, limpio, sin manchas de color */
+  .blob,.soft-blob,.halo{display:none}
+  .hero{background:linear-gradient(180deg,color-mix(in srgb,var(--aqua) 22%,var(--surface)) 0%,var(--surface) 78%)}
+  .hero{padding-block:clamp(48px,8vw,104px) clamp(48px,7vw,88px)}
+  .hero h1{font-size:clamp(44px,7vw,88px);font-weight:700;letter-spacing:-.035em;line-height:.98;margin-top:26px}
+  .hero .lead{font-size:clamp(18px,1.6vw,20px);margin-top:26px}
+  .hero-cta{margin-top:36px}
+  .eyebrow{background:transparent;border:1px solid var(--line)}
+  .hello-bubble,.chat{box-shadow:none}
+
+  /* franja de datos: banda oscura */
+  .stats-band{background:var(--night);border:0;color:#fff}
+  .stats-band .num{font-family:var(--font);font-weight:800;letter-spacing:-.04em;color:#bfe3d6;font-size:clamp(40px,6vw,72px)}
+  .stats-band .lbl{color:#a9c4bb;font-weight:500;font-size:15px}
+  .stat+.stat::before{background:rgba(255,255,255,.14)}
+
+  /* fondos que alternan: claro / un poco más verde */
+  body{background:var(--surface)}
+  .origin,.steps,.why{background:var(--ground)}
+  .statement-band{background:var(--surface)}
+
+  /* tarjetas: planas, borde recto, línea fina arriba (bloque editorial) */
+  .card,.step,.aud,.tmember,.namecard{box-shadow:none!important;border-radius:0;background:transparent;border:0;border-top:1px solid var(--ink)}
+  .card{padding:24px 0 0}
+  .card::after{display:none}
+  .cards{gap:clamp(24px,4vw,56px);margin-top:56px}
+  .card h3{font-size:23px;margin-bottom:10px}
+  .card p,.step p,.aud p,.why-item p{font-size:17px;line-height:1.61}
+  .card .ic{border-radius:50%;background:transparent;border:1px solid var(--line)}
+  .card:hover .ic{background:var(--ink);color:var(--surface);transform:none}
+  .step{padding:22px 0}
+  .step h3{font-size:23px}
+  .step .n{background:var(--ink);font-weight:700}
+  .namecard{background:var(--surface);padding:28px;border:1px solid var(--line);border-top:3px solid var(--ink)}
+  .media-main{border-radius:0;box-shadow:none}
+  .acc-item>summary{font-size:19px;font-weight:700;letter-spacing:-.01em}
+  .acc-body{font-size:17px}
+  .acc-ic{border-radius:50%}
+  .why-item h3{font-size:21px}
+  .why-item .ic{border-radius:50%}
+
+  /* para quién: un único bloque destacado de color (el acento de la página) */
+  .aud-grid{gap:0;margin-top:56px}
+  .aud{padding:clamp(32px,4vw,56px);border-top:0}
+  .aud.pays{background:var(--surface-2);border:1px solid var(--line)}
+  .aud.benef{background:var(--sage-deep);color:#fff;border:1px solid var(--sage-deep)}
+  .aud.benef h3,.aud.benef .tag{color:#fff}
+  .aud.benef p{color:rgba(255,255,255,.86)}
+  .aud.benef li{background:transparent;border-color:rgba(255,255,255,.45);color:#fff}
+  :root[data-theme="dark"] .aud.benef{background:#2f5a4e;border-color:#2f5a4e}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .aud.benef{background:#2f5a4e;border-color:#2f5a4e}}
+  .aud h3{font-size:clamp(26px,2.6vw,32px)}
+
+  /* equipo */
+  .tmember{padding:18px 0}
+  .avatar{box-shadow:none}
+
+  /* frase de impacto: tamaño "arquitectónico" */
+  .statement{font-size:clamp(44px,9vw,124px);font-weight:700;letter-spacing:-.045em;line-height:.95}
+  .statement .hl::after{opacity:.4;border-radius:0}
+
+  /* llamada final: franja oscura sobria */
+  .final{background:var(--night)!important;box-shadow:none;border-radius:0}
+  .final::before{opacity:.35}
+  .final .pulse-bg{opacity:.12}
+  .final h2{text-shadow:none;font-size:clamp(34px,4.8vw,58px)}
+  .final .btn{background:#fff;color:var(--night)}
+  .final .btn:hover{background:#dff1ea}
+
+  /* pie de página: bloque oscuro con la marca en grande */
+  footer{background:var(--night-2);color:#fff;padding-block:clamp(56px,8vw,96px) 36px;}
+  .foot{border-top:0;padding-top:0;align-items:flex-end}
+  .foot-mark{flex:1 1 100%;font-family:var(--font);font-weight:800;letter-spacing:-.035em;line-height:.8;font-size:clamp(84px,19vw,240px);color:#fff;margin-bottom:28px}
+  .foot .slg{color:#a9c4bb;font-style:normal;font-size:18px}
+  .foot .meta{color:#7f948d;font-size:15px}
+  @media (max-width:640px){.foot{align-items:center}.foot-mark{text-align:center}}
 </style>
 
 <header id="hdr">
@@ -849,7 +971,7 @@
 
 <footer>
   <div class="wrap foot">
-    <a class="brand" href="#top"><img class="logo-light" src="images/logo.png" alt="AYKAI"><img class="logo-dark" src="images/logo-dark.png" alt="AYKAI"></a>
+    <div class="foot-mark" aria-hidden="true">AYKAI</div>
     <div class="slg">“Transformamos tu atención, cuidamos tu bienestar.”</div>
     <div class="meta">Proyecto AYKAI · Hecho con 💚 en Perú</div>
   </div>
