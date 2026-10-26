@@ -110,8 +110,8 @@
   @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .t-hero h1 .hl{background:#E3EA7A;color:#17302A}}
   .t-hero .lead{font-size:clamp(17px,1.6vw,20px);color:var(--ink-soft);max-width:32em;margin-top:22px}
   .hero-cta{display:flex;flex-wrap:wrap;gap:12px}
-  .t-bot{display:flex;align-items:flex-end;justify-content:center;min-height:480px;padding:20px}
-  .t-bot img{width:80%;max-width:330px;position:relative;z-index:1;animation:float 6s ease-in-out infinite}
+  .t-bot{display:flex;align-items:center;justify-content:center;min-height:480px;padding:150px 20px 24px}
+  .t-bot img{width:76%;max-width:300px;height:auto;position:relative;z-index:1;animation:float 6s ease-in-out infinite}
   .bubble{position:absolute;z-index:2;font-size:14.5px;font-weight:600;line-height:1.35;padding:11px 15px;border-radius:20px;max-width:230px;box-shadow:0 12px 26px -16px rgba(0,0,0,.4)}
   .bubble.in{left:18px;top:22px;background:var(--card);border-bottom-left-radius:6px;animation:float 6s ease-in-out infinite .4s}
   .bubble.out{right:18px;top:96px;background:#D9FDD3;color:#17302A;border-bottom-right-radius:6px;animation:float 6s ease-in-out infinite 1s}
@@ -231,8 +231,11 @@
     .s3{grid-column:span 6}.s4,.s5{grid-column:span 6}.s7,.s8{grid-column:span 12}
     .t-hero,.t-bot{grid-column:span 12}
     .t-hero,.t-bot{min-height:auto}
-    .t-bot{min-height:380px}
-    .t-bot img{max-width:260px}
+    .t-bot{min-height:0;flex-direction:column;align-items:stretch;gap:10px;padding:20px}
+    .t-bot .bubble{position:static;animation:none;max-width:75%}
+    .t-bot .bubble.in{align-self:flex-start}
+    .t-bot .bubble.out{align-self:flex-end}
+    .t-bot img{align-self:center;max-width:220px;margin-top:6px}
     .t-phone img{width:min(220px,60%)}
     .nav-links{display:none}
     .t-final{grid-template-columns:1fr;text-align:center}
@@ -253,12 +256,11 @@
     .nav .btn .wa{width:17px;height:17px}
     .icon-btn{width:38px;height:38px}
     .t-stat{min-height:140px}
-    .t-stat .num{font-size:44px}
-    .t-bot{min-height:380px}
-    .t-bot img{max-width:250px}
+    .t-stat .num{font-size:40px}
+    .t-bot img{max-width:190px}
     .t-img{grid-column:span 12}
     .t-img img{max-width:240px}
-    .t-stat .emo{font-size:24px}
+    .t-stat .emo{font-size:20px;right:12px;top:12px}
     .step{grid-template-columns:auto 1fr}
     .step .bubble{grid-column:1 / -1;justify-self:end}
     .plus{width:56px;height:56px;margin:-28px 0 0 -28px;font-size:30px}
